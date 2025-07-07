@@ -50,7 +50,7 @@ const QUICK_ACTIONS = [
   },
   {
     icon: "time-outline" as const,
-    label: "History\nLog",g
+    label: "History\nLog",
     route: "/history" as const,
     color: "#C2185B",
     gradient: ["#E91E63", "#C2185B"] as [string, string],
