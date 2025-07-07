@@ -1,27 +1,25 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Switch,
-  Dimensions,
-  Platform,
-  KeyboardAvoidingView,
-  Alert,
-} from "react-native";
-import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
-import { addMedication } from "../../utils/storage";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+import {
+  Alert,
+  Dimensions,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import {
   scheduleMedicationReminder,
   scheduleRefillReminder,
 } from "../../utils/notifications";
+import { addMedication } from "../../utils/storage";
 
 const { width } = Dimensions.get("window");
 
@@ -209,10 +207,7 @@ export default function AddMedicationScreen() {
               styles.optionCard,
               selectedFrequency === freq.label && styles.selectedOptionCard,
             ]}
-            onPress={() => {
-              setSelectedFrequency(freq.label);
-              setForm({ ...form, frequency: freq.label });
-            }}
+            onPress={() => handleFrequencySelect(freq.label)}
           >
             <View
               style={[
@@ -250,10 +245,7 @@ export default function AddMedicationScreen() {
               styles.optionCard,
               selectedDuration === dur.label && styles.selectedOptionCard,
             ]}
-            onPress={() => {
-              setSelectedDuration(dur.label);
-              setForm({ ...form, duration: dur.label });
-            }}
+            onPress={() => handleDurationSelect(dur.label)}
           >
             <Text
               style={[
@@ -437,7 +429,7 @@ export default function AddMedicationScreen() {
                   <View>
                     <Text style={styles.switchLabel}>Reminders</Text>
                     <Text style={styles.switchSubLabel}>
-                      Get notified when it's time to take your medication
+                      Get notified when it&apos;s time to take your medication
                     </Text>
                   </View>
                 </View>
